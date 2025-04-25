@@ -1,7 +1,16 @@
-
 from .base import *
+import environ
 
-DEBUG = True
-ALLOWED_HOSTS = ["*"]
-DATABASES["default"]["NAME"] = BASE_DIR / "db.sqlite3"
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+env = environ.Env()
+env.read_env(BASE_DIR / ".env")
+
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": env("POSTGRES_DB"),
+        "USER": env("POSTGRES_USER"),
+        "PASSWORD": env("POSTGRES_PASSWORD"),
+        "HOST": env("POSTGRES_HOST", default="localhost"),
+        "PORT": env("POSTGRES_PORT", default="5432"),
+    }
+}

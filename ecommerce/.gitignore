@@ -6,7 +6,7 @@ __pycache__/
 *.egg-info/
 
 # Virtualenv
-venv/
+../venv/
 .env           # dotenv secrets
 
 # IDE
