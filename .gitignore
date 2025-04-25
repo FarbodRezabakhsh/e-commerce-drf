@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.so
+*.egg-info/
+
+# Virtualenv
+venv/
+.env           # dotenv secrets
+
+# IDE
+.idea/
+.vscode/
+
+# Django
+*.log
+staticfiles/
+media/
+db.sqlite3
+
+# Migrations you don’t want yet
+*/migrations/**/__pycache__/
+*/migrations/*.pyc
+
+# Docker
+*.env.docker
+
+# OS
+.DS_Store
+Thumbs.db
