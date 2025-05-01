@@ -1,6 +1,7 @@
 from .base import *
 import environ
 
+
 env = environ.Env()
 env.read_env(BASE_DIR / ".env")
 
@@ -14,3 +15,7 @@ DATABASES = {
         "PORT": env("POSTGRES_PORT", default="5432"),
     }
 }
+
+# Media path
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
