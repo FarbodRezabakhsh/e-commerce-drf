@@ -17,7 +17,7 @@ class CartItemReadSerializer(serializers.ModelSerializer):
         model = CartItem
         fields = ('id', 'variant', 'quantity', 'unit_price', 'total_price')
 
-class CartItem(serializers.ModelSerializer):
+class CartSerializer(serializers.ModelSerializer):
     items = CartItemReadSerializer(many=True, read_only=True)
     subtotal = serializers.IntegerField(read_only=True)
     shipping_fee = serializers.IntegerField(read_only=True)

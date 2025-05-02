@@ -19,8 +19,9 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from django.conf import settings
 from django.conf.urls.static import static
-
+from apps.cart import views
 from apps.catalog.views import ProductViewSet, CategoryViewSet
+from apps.cart.views import CartDetailView, CartItemUpdateView, CartItemAddView
 
 router = DefaultRouter()
 router.register('products', ProductViewSet, basename="product")
@@ -29,6 +30,12 @@ router.register('category', CategoryViewSet, basename="category")
 urlpatterns = [
     path('api/', include(router.urls)),
     path('admin/', admin.site.urls),
+]
+
+urlpatterns += [
+    path("api/cart/",views.CartDetailView.as_view(), name="cart-detail"),
+    path("api/cart/items/",views.CartItemAddView.as_view(), name="cart-add-item"),
+    path("api/cart/items/<uuid:item_id>/", CartItemUpdateView.as_view(), name="cart-item-update"),
 ]
 
 if settings.DEBUG:                         # only in dev
