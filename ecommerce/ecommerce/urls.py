@@ -35,7 +35,7 @@ urlpatterns = [
 urlpatterns += [
     path("api/cart/",views.CartDetailView.as_view(), name="cart-detail"),
     path("api/cart/items/",views.CartItemAddView.as_view(), name="cart-add-item"),
-    path("api/cart/items/<uuid:item_id>/", CartItemUpdateView.as_view(), name="cart-item-update"),
+    path("api/cart/items/<int:cart_id>/", views.CartItemUpdateView.as_view(), name="cart-item-update"),
 ]
 
 if settings.DEBUG:                         # only in dev

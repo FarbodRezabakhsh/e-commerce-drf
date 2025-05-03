@@ -36,7 +36,7 @@ class CartDetailView(generics.RetrieveAPIView):
         response = super().finalize_response(request, response, *args, **kwargs)
         if not request.user.is_authenticated:
             response.set_cookie("cart_id", cart.id, max_age=60 * 60 * 24 * 30) # set cookie for 30 days
-        return Response
+        return response
 
 
 class CartItemAddView(generics.CreateAPIView):
