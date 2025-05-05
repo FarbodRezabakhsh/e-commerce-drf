@@ -16,26 +16,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from rest_framework.routers import DefaultRouter
 from django.conf import settings
 from django.conf.urls.static import static
-from apps.cart import views
-from apps.catalog.views import ProductViewSet, CategoryViewSet
-from apps.cart.views import CartDetailView, CartItemUpdateView, CartItemAddView
-
-router = DefaultRouter()
-router.register('products', ProductViewSet, basename="product")
-router.register('category', CategoryViewSet, basename="category")
 
 urlpatterns = [
-    path('api/', include(router.urls)),
     path('admin/', admin.site.urls),
-]
 
-urlpatterns += [
-    path("api/cart/",views.CartDetailView.as_view(), name="cart-detail"),
-    path("api/cart/items/",views.CartItemAddView.as_view(), name="cart-add-item"),
-    path("api/cart/items/<int:cart_id>/", views.CartItemUpdateView.as_view(), name="cart-item-update"),
+    path('api/catalog/', include(('apps.catalog.urls', 'catalog'), namespace='catalog')),
+    path('api/cart/', include(('apps.cart.urls', 'cart'), namespace='cart')),
+    path('api/auth/', include(('apps.users.urls', 'auth'), namespace='auth')),
 ]
 
 if settings.DEBUG:                         # only in dev
