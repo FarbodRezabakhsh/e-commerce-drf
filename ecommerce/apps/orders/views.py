@@ -16,7 +16,7 @@ class CheckoutView(APIView):
 
     def post(self, request):
         cart = get_object_or_404(Cart, user=request.user)
-        if cart.items().count() == 0:
+        if cart.items.count() == 0:
             return Response({"Detail":"Cart is empty"},status=status.HTTP_404_NOT_FOUND)
         order = Order.objects.create(user=request.user, total_price=cart.grand_total)
         OrderItem.objects.bulk_create([

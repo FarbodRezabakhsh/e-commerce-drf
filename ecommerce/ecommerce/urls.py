@@ -25,8 +25,8 @@ urlpatterns = [
     path('api/catalog/', include(('apps.catalog.urls', 'catalog'), namespace='catalog')),
     path('api/cart/', include(('apps.cart.urls', 'cart'), namespace='cart')),
     path('api/auth/', include(('apps.users.urls', 'auth'), namespace='auth')),
-    path('api/checkout/', include(('apps.checkout.urls', 'checkout'), namespace='checkout')),
-    path('api/payment/', include(('apps.payment.urls', 'payment'), namespace='payment')),
+    path('api/orders/', include(('apps.orders.urls', 'checkout'), namespace='checkout')),
+    path('api/payment/', include(('apps.payments.urls', 'payment'), namespace='payment')),
 ]
 
 if settings.DEBUG:                         # only in dev
